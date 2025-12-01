@@ -10,5 +10,6 @@
 
 /.idea/
 **/out/
-**/input.txt
-**/testinput.txt
+**/input*
+**/testinput*
+**/target/**
