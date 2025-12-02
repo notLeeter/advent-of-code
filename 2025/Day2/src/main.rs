@@ -15,7 +15,7 @@ fn main() {
     }
 
     // problem one
-    let mut count = 0;
+    let mut count: i64 = 0;
     for range in &ranges {
         for x in range.0..=range.1 {
             let str = x.to_string();
@@ -32,16 +32,25 @@ fn main() {
 
     for range in &ranges {
         for x in range.0..=range.1 {
+            let mut found = false;
             let str = x.to_string();
+
             for y in 0..=str.len()/2 {
                 if y == 0 { continue };
                 let chunks: Vec<&str> = sub_strings(&str, y);
+                if found { break };
 
                 for z in 0..=chunks.len()-1 {
                     if z == 0 { continue };
-                    if chunks[z] != chunks[z-1] { break };
-                    if z == chunks.len() { count += x; break; };
-                    break;
+                    if chunks[z] != chunks[z-1] {
+                        break
+                    };
+
+                    if z == chunks.len()-1 {
+                        count += x;
+                        found = true;
+                        break;
+                    };
                 }
             }
         }
